@@ -1,0 +1,41 @@
+PROGRAM 4(TASK 4)
+package loops.com;
+public class Cars {
+			String model;
+			String color;
+			Cars(String model,String color){
+				this.model=model;
+				this.color=color;
+			}
+			void start() {
+				if (model == null || model.isEmpty()) {
+					System.out.println("car started");
+				}else {
+					System.out.println(model + "car started");
+				}
+				
+			}
+			void stop() {
+				System.out.println("car stopped");
+			}
+			public static void main(String[] args) {
+			Cars Cars1 = new Cars("tesla","red");//testcase1
+			Cars1.start();
+			Cars Cars2 = new Cars ("BMW","Black");//testcase2
+			Cars2.start();
+			Cars Cars3 = new Cars ("","White");//testcase3:car model empty
+			Cars3.start();
+			Cars Cars4 = new Cars("audi","blue");//start method not called
+			Cars Cars5 = new Cars("toyota","silver");//call stop method only
+			Cars5.stop();
+		}
+
+	}
+  OUTPUT:
+teslacar started //TESTCASE1
+BMWcar started  //TESTCASE2
+car started    //TESTCASE3
+              //TESTCASE4
+car stopped   //TESTCASE5
+RESULT:
+Program creates a car object and calls its methods successfully.
