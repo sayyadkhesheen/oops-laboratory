@@ -1,0 +1,49 @@
+PROGRAM3
+package loops.com;
+import java.util.Scanner;
+public class Fibonacciseries {
+	public static int fib(int n ) {
+		if (n==0) {
+			return 0;
+		}else if (n==1) {
+			return 1;
+		}else {
+			return fib(n-1)+fib(n-2);
+		}
+		
+	}
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter a number :");
+		int n = sc.nextInt();
+		for (int i = 0 ; i<=n;i++) {
+			System.out.println(fib(i));
+		}
+		sc.close();
+		
+	}
+
+}
+OUTPUT:
+TEST CASE 1:
+enter a number:
+5
+0 1 1 2 3 
+TEST CASE 2 :
+enter a number :
+7
+0 1 1 2 3 5 8 
+TEST CASE 3 :
+enter a number:
+1
+0
+TEST CASE 4:
+enter a number:
+0
+
+TEST CASE 5 :
+enter a number:
+10
+0 1 1 2 3 5 8 13 21 34 
+RESULT:
+PRINTS FIBONACCI SEQUENCE CORRECTLY UPTO N TERMS
