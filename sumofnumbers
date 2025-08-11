@@ -1,0 +1,80 @@
+*PROGRAM 1(TEST CASE1:)
+package loops.com;
+public class Loops {
+public static void main(String[] args) {
+	int sum = 0;
+		for(int i = 1; i<=100;i++) {
+		sum = sum+i;
+		}
+		System.out.println("sum of numbers is:"+sum);
+	}
+
+}
+OUTPUT:
+sum of numbers is:5050
+*PROGRAM 1 (TEST CASE 2:)
+package loops.com;
+public class Loops {
+public static void main(String[] args) {
+	int sum = 0;
+		for(int i = 1; i<=50;i++) {
+		sum = sum+i;
+		}
+		System.out.println("sum of numbers is:"+sum);
+	}
+
+}
+OUTPUT:
+sum of numbers is:1275
+*PROGRAM 1 (TEST CASE 3:)
+package loops.com;
+public class Loops {
+public static void main(String[] args) {
+	int sum = 0;
+		for(int i = 1; i<=10;i++) {
+		sum = sum+i;
+		}
+		System.out.println("sum of numbers is:"+sum);
+	}
+
+}
+OUTPUT:
+sum of numbers is:55
+*PROGRAM 1 (TEST CASE 4:)
+package loops.com;
+public class Loops {
+public static void main(String[] args) {
+	int sum = 0;
+		for(int i = 50; i<=100;i++) {
+		sum = sum+i;
+		}
+		System.out.println("sum of numbers is:"+sum);
+	}
+
+}
+OUTPUT:
+sum of numbers is:3825
+*PROGRAM 1 (TEST CASE 5:)
+package loops.com;
+public class Loops {
+public static void main(String[] args) {
+	int sum = 0;
+		for(int i =1; i<=1;i++) {
+		sum = sum+i;
+		}
+		System.out.println("sum of numbers is:"+sum);
+	}
+
+}
+OUTPUT:
+sum of numbers is:1
+*RESULT:
+1.DISPLAYS THE CORRECT SUM AS 5050
+2.DISPLAYS THE CORRECT SUM AS 1275
+3.DISPLAYS THE CORRECT SUM AS 55
+4.DISPLAYS THE CORRECT SUM AS 3825
+5.DISPLAYS THE CORRECT SUM AS 1
+
+
+
+
