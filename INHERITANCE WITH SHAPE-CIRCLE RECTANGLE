@@ -1,0 +1,75 @@
+PROGRAM 5:
+Package shape;
+class Shape {
+    // Method to be overridden
+    public void area() {
+        System.out.println("Default area");
+    }
+}
+
+// Derived class Circle
+class Circle extends Shape {
+    double radius;
+
+    Circle(double r) {
+        radius = r;
+    }
+
+    // Overriding area method
+    @Override
+    public void area() {
+        double result = Math.PI * radius * radius;
+        System.out.println("Area of Circle = " + result);
+    }
+}
+
+// Derived class Rectangle
+class Rectangle extends Shape {
+    double length, width;
+
+    Rectangle(double l, double w) {
+        length = l;
+        width = w;
+    }
+
+    // Overriding area method
+    @Override
+    public void area() {
+        double result = length * width;
+        System.out.println("Area of Rectangle = " + result);
+    }
+}
+
+// Main class
+  class Shapes {
+    public static void main(String[] args) {
+        // Test cases
+
+        // TC1: Circle with radius 5 → Area ≈ 78.5
+        Shape s1 = new Circle(5);
+        s1.area();
+
+        // TC2: Rectangle 10x5 → Area = 50
+        Shape s2 = new Rectangle(10, 5);
+        s2.area();
+
+        // TC3: Shape default → "Default area"
+        Shape s3 = new Shape();
+        s3.area();
+
+        // TC4: Zero radius circle → Area = 0
+        Shape s4 = new Circle(0);
+        s4.area();
+
+        // TC5: Rectangle with width 0 → Area = 0
+        Shape s5 = new Rectangle(7, 0);
+        s5.area();}}
+OUTPUT:
+Area of Circle = 78.53981633974483
+Area of Rectangle = 50.0
+Default area
+Area of Circle = 0.0
+Area of Rectangle = 0.0
+RESULT:
+inheritance implemented successfully;
+area() works for each derived class(NOTE:ALL TEST CASES ARE VERIFIED IN ONE PROGRAM ITSELF)
