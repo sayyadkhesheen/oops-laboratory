@@ -1,0 +1,133 @@
+PROBLEM NO. 6: INTERFACE FOR BANKING SYSTEM
+package shape;
+import java.util.ArrayList;
+import java.util.List;
+
+//Step 1: Define interface
+interface BankingService {
+ void deposit(double amount);
+ void withdraw(double amount);
+ void showBalance();
+}
+
+//Step 2: Implement Account class
+class Account implements BankingService {
+ private double balance;
+
+ public Account() {
+     balance = 0;
+ }
+
+ @Override
+ public void deposit(double amount) {
+     if (amount <= 0) {
+         System.out.println("Invalid deposit amount!");
+         return;
+     }
+     balance += amount;
+     System.out.println("Deposited: ₹" + amount);
+     showBalance();
+ }
+
+ @Override
+ public void withdraw(double amount) {
+     if (amount <= 0) {
+         System.out.println("Invalid withdrawal amount!");
+         return;
+     }
+     if (amount > balance) {
+         System.out.println("Insufficient funds!");
+     } else {
+         balance -= amount;
+         System.out.println("Withdrawn: ₹" + amount);
+     }
+     showBalance();
+ }
+
+ @Override
+ public void showBalance() {
+     System.out.println("Current Balance: ₹" + balance);
+ }
+
+ public double getBalance() {
+     return balance;
+ }
+}
+
+//Step 3: Implement Transaction class
+class Transaction {
+ private List<String> logs = new ArrayList<>();
+
+ public void record(String message) {
+     logs.add(message);
+     System.out.println("Transaction recorded: " + message);
+ }
+
+ public void showLogs() {
+     System.out.println("Transaction History:");
+     for (String log : logs) {
+         System.out.println(log);
+     }
+ }
+}
+public class BankingSystemof{
+ public static void main(String[] args) {
+     BankingService account = new Account();
+     Transaction transaction = new Transaction();
+
+     // Test Case 1: Deposit ₹1000
+     System.out.println("\nTC1: Deposit 1000");
+     account.deposit(1000);
+     transaction.record("Deposited ₹1000");
+
+     // Test Case 2: Withdraw ₹500
+     System.out.println("\nTC2: Withdraw 500");
+     account.withdraw(500);
+     transaction.record("Withdrew ₹500");
+
+     // Test Case 3: Withdraw ₹1500
+     System.out.println("\nTC3: Withdraw 1500");
+     account.withdraw(1500);
+     transaction.record("Tried to withdraw ₹1500");
+
+     // Test Case 4: Deposit negative amount
+     System.out.println("\nTC4: Deposit -200");
+     account.deposit(-200);
+     transaction.record("Tried invalid deposit of -200");
+
+     // Test Case 5: Log transaction
+     System.out.println("\nTC5: Show transaction log");
+     transaction.showLogs();
+System.out.println("name:sayyad khesheen");
+System.out.println("registration number:2117240030138");
+}}
+OUTPUT:
+TC1: Deposit 1000
+Deposited: ₹1000.0
+Current Balance: ₹1000.0
+Transaction recorded: Deposited ₹1000
+
+TC2: Withdraw 500
+Withdrawn: ₹500.0
+Current Balance: ₹500.0
+Transaction recorded: Withdrew ₹500
+
+TC3: Withdraw 1500
+Insufficient funds!
+Current Balance: ₹500.0
+Transaction recorded: Tried to withdraw ₹1500
+
+TC4: Deposit -200
+Invalid deposit amount!
+Transaction recorded: Tried invalid deposit of -200
+
+TC5: Show transaction log
+Transaction History:
+Deposited ₹1000
+Withdrew ₹500
+Tried to withdraw ₹1500
+Tried invalid deposit of -200
+name:sayyad khesheen
+registration number:2117240030138
+RESULT:
+Banking operations and logging through interfaces work as expected
