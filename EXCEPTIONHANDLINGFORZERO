@@ -1,0 +1,52 @@
+7. PROGRAM FOR EXCEPTION HANDLING FOR ZERO DIVISION
+package shape;
+import java.util.Scanner;
+
+public class DivisionByZeroHandling {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            // Take two integers as input
+            System.out.print("Enter numerator: ");
+            int num1 = sc.nextInt();
+
+            System.out.print("Enter denominator: ");
+            int num2 = sc.nextInt();
+
+            // Try dividing inside try block
+            int result = num1 / num2;
+
+            // Print result if division is valid
+            System.out.println("Result: " + result);
+        } 
+        catch (ArithmeticException e) {
+            // Handle division by zero
+            System.out.println("Exception handled: Division by zero is not allowed.");
+        }
+
+        sc.close();
+        }}
+OUTPUT:
+TEST CASE 1:
+Enter numerator: 10
+Enter denominator: 2
+Result: 5
+TEST CASE 2:
+Enter numerator: 20
+Enter denominator: 0
+Result: Exception handled
+TEST CASE 3:
+Enter numerator: -5
+Enter denominator: 5
+Result: -1
+TEST CASE 4:
+Enter numerator: 0
+Enter denominator: 3
+Result: 0
+TEST CASE 5:
+Enter numerator: 100
+Enter denominator: -10
+Result: -10
+RESULT:
+Program gracefully handles division by zero and displays a custom message.
