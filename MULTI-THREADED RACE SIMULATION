@@ -1,0 +1,170 @@
+8. PROGRAM FOR MULTI-THREADED RACE SIMULATION
+package shape;
+class Racer extends Thread {
+    private String racerName;
+    private int sleepTime; // to simulate different speeds
+
+    public Racer(String name, int sleepTime) {
+        this.racerName = name;
+        this.sleepTime = sleepTime;
+    }
+
+    @Override
+    public void run() {
+        try {
+            for (int step = 1; step <= 5; step++) {
+                System.out.println(racerName + " is running step " + step);
+                Thread.sleep(sleepTime); // controls speed of racer
+            }
+            System.out.println(racerName + " finished the race!");
+        } catch (InterruptedException e) {
+            System.out.println(racerName + " was interrupted.");
+        }
+    }
+}
+
+public class RaceSimulation {
+    public static void main(String[] args) {
+        // ===== Test Case 1: Two threads start together =====
+        System.out.println("TC1: Two threads start -> Both race together");
+        Racer r1 = new Racer("Racer A", 500);
+        Racer r2 = new Racer("Racer B", 500);
+        r1.start();
+        r2.start();
+
+        try {
+            r1.join();
+            r2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // ===== Test Case 2: Different sleep time =====
+        System.out.println("\nTC2: Sleep time different -> One finishes first");
+        Racer r3 = new Racer("Racer A", 400);
+        Racer r4 = new Racer("Racer B", 800);
+        r3.start();
+        r4.start();
+
+        try {
+            r3.join();
+            r4.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // ===== Test Case 3: Race between A and B (output may vary) =====
+        System.out.println("\nTC3: Race between thread A and thread B -> Output may vary");
+        Racer r5 = new Racer("Racer A", 500);
+        Racer r6 = new Racer("Racer B", 500);
+        r5.start();
+        r6.start();
+
+        try {
+            r5.join();
+            r6.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // ===== Test Case 4: Add a third thread =====
+        System.out.println("\nTC4: Add a third thread -> Output includes three racers");
+        Racer r7 = new Racer("Racer A", 500);
+        Racer r8 = new Racer("Racer B", 600);
+        Racer r9 = new Racer("Racer C", 700);
+        r7.start();
+        r8.start();
+        r9.start();
+
+        try {
+            r7.join();
+            r8.join();
+            r9.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // ===== Test Case 5: Same sleep time -> Output may interleave =====
+        System.out.println("\nTC5: Threads with same sleep -> Output may interleave");
+        Racer r10 = new Racer("Racer A", 500);
+        Racer r11 = new Racer("Racer B", 500);
+        r10.start();
+        r11.start();}}
+OUTPUT:
+TC1: Two threads start -> Both race together
+Racer A is running step 1
+Racer B is running step 1
+Racer A is running step 2
+Racer B is running step 2
+Racer A is running step 3
+Racer B is running step 3
+Racer B is running step 4
+Racer A is running step 4
+Racer A is running step 5
+Racer B is running step 5
+Racer B finished the race!
+Racer A finished the race!
+
+TC2: Sleep time different -> One finishes first
+Racer A is running step 1
+Racer B is running step 1
+Racer A is running step 2
+Racer B is running step 2
+Racer A is running step 3
+Racer A is running step 4
+Racer B is running step 3
+Racer A is running step 5
+Racer A finished the race!
+Racer B is running step 4
+Racer B is running step 5
+Racer B finished the race!
+
+TC3: Race between thread A and thread B -> Output may vary
+Racer A is running step 1
+Racer B is running step 1
+Racer A is running step 2
+Racer B is running step 2
+Racer B is running step 3
+Racer A is running step 3
+Racer A is running step 4
+Racer B is running step 4
+Racer A is running step 5
+Racer B is running step 5
+Racer B finished the race!
+Racer A finished the race!
+
+TC4: Add a third thread -> Output includes three racers
+Racer A is running step 1
+Racer B is running step 1
+Racer C is running step 1
+Racer A is running step 2
+Racer B is running step 2
+Racer C is running step 2
+Racer A is running step 3
+Racer B is running step 3
+Racer C is running step 3
+Racer A is running step 4
+Racer B is running step 4
+Racer A is running step 5
+Racer C is running step 4
+Racer B is running step 5
+Racer A finished the race!
+Racer C is running step 5
+Racer B finished the race!
+Racer C finished the race!
+
+TC5: Threads with same sleep -> Output may interleave
+Racer A is running step 1
+Racer B is running step 1
+Racer A is running step 2
+Racer B is running step 2
+Racer A is running step 3
+Racer B is running step 3
+Racer A is running step 4
+Racer B is running step 4
+Racer B is running step 5
+Racer A is running step 5
+Racer B finished the race!
+Racer A finished the race!
+RESULT:
+Threads race concurrently and demonstrate interleaved output simulating competition.
