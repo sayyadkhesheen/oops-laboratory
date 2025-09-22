@@ -1,0 +1,104 @@
+9.Program for generic binary tree with traversals
+package shape;
+import java.util.*;
+//Generic TreeNode class
+class TreeNode<T> {
+ T data;
+ TreeNode<T> left, right;
+ TreeNode(T data) {
+     this.data = data;
+     left = right = null;}}
+//Generic Binary Tree class
+class BinaryTree<T extends Comparable<T>> {
+ private TreeNode<T> root;
+
+ // Insert method (BST style)
+ public void insert(T data) {
+     root = insertRec(root, data);
+ }
+ private TreeNode<T> insertRec(TreeNode<T> node, T data) {
+     if (node == null) {
+         return new TreeNode<>(data);
+     }
+     if (data.compareTo(node.data) < 0) {
+         node.left = insertRec(node.left, data);
+     } else {
+         node.right = insertRec(node.right, data);
+     }
+     return node;
+ }
+ // In-order Traversal (DFS)
+ public void inOrder() {
+     inOrderRec(root);
+     System.out.println();
+ }
+ private void inOrderRec(TreeNode<T> node) {
+     if (node != null) {
+         inOrderRec(node.left);
+         System.out.print(node.data + " ");
+         inOrderRec(node.right);}}
+ // Pre-order Traversal (DFS)
+ public void preOrder() {
+     preOrderRec(root);
+     System.out.println();
+ }
+ private void preOrderRec(TreeNode<T> node) {
+     if (node != null) {
+         System.out.print(node.data + " ");
+         preOrderRec(node.left);
+         preOrderRec(node.right);
+     }
+ }
+ // Post-order Traversal (DFS)
+ public void postOrder() {
+     postOrderRec(root);
+     System.out.println();
+ }
+ private void postOrderRec(TreeNode<T> node) {
+     if (node != null) {
+         postOrderRec(node.left);
+         postOrderRec(node.right);
+         System.out.print(node.data + " ");
+     }
+ }
+ // Level-order Traversal (BFS)
+ public void levelOrder() {
+     if (root == null) return;
+     Queue<TreeNode<T>> queue = new LinkedList<>();
+     queue.add(root);
+     while (!queue.isEmpty()) {
+         TreeNode<T> node = queue.poll();
+         System.out.print(node.data + " ");
+         if (node.left != null) queue.add(node.left);
+         if (node.right != null) queue.add(node.right);
+     }
+     System.out.println();
+ }
+}
+//Main class for testing
+public class GenericBinaryTreeDemo {
+ public static void main(String[] args) {
+     BinaryTree<Integer> tree = new BinaryTree<>();
+     // Insert nodes
+     tree.insert(10);
+     tree.insert(5);
+     tree.insert(20);
+     System.out.print("Level-order: ");
+     tree.levelOrder();   // 10 5 20
+     System.out.print("In-order: ");
+     tree.inOrder();      // 5 10 20
+     System.out.print("Pre-order: ");
+     tree.preOrder();     // 10 5 20
+     System.out.print("Post-order: ");
+     tree.postOrder();   // 5 20 10
+System.out.println("name:sayyad khesheen");
+System.out.println("registration number:2117240030138");}}
+OUTPUT:
+Level-order: 10 5 20 
+In-order: 5 10 20 
+Pre-order: 10 5 20 
+Post-order: 5 20 10 
+name:sayyad khesheen
+registration number:2117240030138
+RESULT:
+Binary tree operations and traversals work correctly using generic implementation
